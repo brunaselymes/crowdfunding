@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 class Category(models.Model):
     name = models.CharField(max_length=200)
 
+
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -15,23 +16,20 @@ class Project(models.Model):
     goal = models.IntegerField()
     created_date = models.DateTimeField()
     close_date = models.DateTimeField()
-    user = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE)
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE
-    )
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
 
 class Pledge(models.Model):
     amount = models.IntegerField()
     comment = models.CharField(max_length=200)
     anonymous = models.BooleanField()
-    project = models.ForeignKey(
-        Project,
-        on_delete=models.CASCADE
-    )
-    user = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE
-    )
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+
+class Perk(models.Model):
+    name = models.CharField(max_length=150)
+    minValue = models.IntegerField()
+    qtyLimit = models.IntegerField()
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)

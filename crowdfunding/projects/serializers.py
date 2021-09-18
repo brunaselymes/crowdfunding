@@ -1,6 +1,6 @@
 from django.db.models import fields
 from rest_framework import serializers
-from .models import Project, Category, Pledge
+from .models import Perk, Project, Category, Pledge
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -99,5 +99,21 @@ class ProjectDetailSerializer(ProjectSerializer):
         )
         instance.close_date = validated_data.get("close_date", instance.close_date)
         instance.user = validated_data.get("user", instance.user)
+        instance.save()
+        return instance
+
+
+class PerkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Perk
+        fields = "__all__"
+
+
+class PerkDetailSerializer(PerkSerializer):
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get("name", instance.name)
+        instance.minValue = validated_data.get("minValue", instance.minValue)
+        instance.qtyLimit = validated_data.get("qtyLimit", instance.qtyLimit)
+        instance.project = validated_data.get("project", instance.project)
         instance.save()
         return instance
