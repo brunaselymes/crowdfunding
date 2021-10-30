@@ -25,7 +25,9 @@ class ProjectList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = ProjectSerializer(data=request.data)
+        data = request.data
+        data["user"] = request.user.id
+        serializer = ProjectSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
