@@ -22,7 +22,7 @@ class Project(models.Model):
 
 class Pledge(models.Model):
     amount = models.IntegerField()
-    comment = models.CharField(max_length=200, null=True)
+    comment = models.CharField(max_length=400, null=True)
     anonymous = models.BooleanField(default=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)

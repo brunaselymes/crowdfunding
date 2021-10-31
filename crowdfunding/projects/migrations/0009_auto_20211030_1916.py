@@ -9,33 +9,37 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('projects', '0008_auto_20211030_1908'),
+        ("projects", "0008_auto_20211030_1908"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='perk',
-            name='minValue',
+            model_name="perk",
+            name="minValue",
             field=models.IntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='perk',
-            name='qtyLimit',
+            model_name="perk",
+            name="qtyLimit",
             field=models.IntegerField(null=True),
         ),
         migrations.AlterField(
-            model_name='pledge',
-            name='anonymous',
+            model_name="pledge",
+            name="anonymous",
             field=models.BooleanField(default=True),
         ),
         migrations.AlterField(
-            model_name='pledge',
-            name='comment',
-            field=models.CharField(max_length=200, null=True),
+            model_name="pledge",
+            name="comment",
+            field=models.CharField(max_length=400, null=True),
         ),
         migrations.AlterField(
-            model_name='pledge',
-            name='user',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="pledge",
+            name="user",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]
