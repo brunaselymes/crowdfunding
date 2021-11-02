@@ -11,7 +11,9 @@ class Category(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True)
-    image = models.URLField(null=True)
+    image = models.URLField(
+        default="https://i.pinimg.com/originals/8f/05/17/8f0517135e33a3f1ad573d1dc16318b9.jpg"
+    )
     is_active = models.BooleanField(default=True)
     goal = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
