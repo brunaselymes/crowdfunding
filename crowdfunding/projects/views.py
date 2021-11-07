@@ -135,7 +135,12 @@ class CategoryDetail(APIView):
 
 class PledgeList(APIView):
     def get(self, request):
-        pledges = Pledge.objects.all()
+        project_id = request.query_params.get("project_id")
+        pledges = (
+            Pledge.objects.filter(project=project_id)
+            if project_id
+            else Pledge.objects.all()
+        )
         serializer = PledgeSerializer(pledges, many=True)
         return Response(serializer.data)
 
