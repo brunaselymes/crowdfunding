@@ -4,3 +4,7 @@ Plantacarrot is a crowdfunding platform to support the vegan community to grow a
 
 deployed project:
 https://damp-woodland-11174.herokuapp.com/projects/
+
+
+Frontend repo:
+https://github.com/brunaselymes/plantacarrot-client-react
